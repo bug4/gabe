@@ -77,6 +77,19 @@ function App() {
             </span>
           </h1>
         </div>
+        
+        {/* Quote under title */}
+        <div className="flex justify-center pt-6">
+          <p className="text-xl md:text-2xl lg:text-3xl text-white/90 text-center font-light tracking-wide font-elegant italic">
+            <span className="inline-block" 
+                  style={{
+                    textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.5)',
+                    filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
+                  }}>
+              Heaven's newest resident
+            </span>
+          </p>
+        </div>
       </ContentOverlay>
 
       {/* Audio Controls */}
