@@ -1,12 +1,24 @@
 import React from 'react';
-import { Volume2, VolumeX, Twitter } from 'lucide-react';
+import { Volume2, VolumeX, Twitter, Copy, Check } from 'lucide-react';
 import Spline from '@splinetool/react-spline';
 import ContentOverlay from './components/ContentOverlay';
 
 function App() {
   const [isMuted, setIsMuted] = React.useState(false);
+  const [copied, setCopied] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
+  const contractAddress = "777777777777"; // Replace with actual contract address
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(contractAddress);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
   React.useEffect(() => {
     // Auto-play music when component mounts
     if (audioRef.current) {
@@ -149,6 +161,37 @@ function App() {
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-white/40 text-xs">Chart will populate with activity</span>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Contract Address Box - Bottom Center */}
+      <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto">
+        <div className="bg-blue-900/40 backdrop-blur-md border border-blue-400/20 rounded-2xl p-4 shadow-2xl">
+          <div className="flex items-center gap-3">
+            <div className="flex flex-col">
+              <span className="text-white/60 text-xs mb-1">Contract Address</span>
+              <span className="text-white font-mono text-sm">
+                {contractAddress.slice(0, 6)}...{contractAddress.slice(-4)}
+              </span>
+            </div>
+            <button
+              onClick={copyToClipboard}
+              className="bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/30 text-white p-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 flex items-center gap-2"
+              title="Copy contract address"
+            >
+              {copied ? (
+                <>
+                  <Check size={16} />
+                  <span className="text-xs">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy size={16} />
+                  <span className="text-xs">Copy</span>
+                </>
+              )}
+            </button>
           </div>
         </div>
       </div>
