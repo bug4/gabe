@@ -66,7 +66,7 @@ function App() {
       <ContentOverlay className="relative z-10">
         {/* Main Title - Top Center */}
         <div className="flex justify-center pt-20">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white text-center leading-tight tracking-widest font-futuristic">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white text-center leading-tight tracking-wide font-futuristic">
             <span className="inline-block animate-pulse bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl" 
                   style={{
                     textShadow: '0 0 30px rgba(255,255,255,1), 0 0 60px rgba(255,255,255,0.8), 0 0 90px rgba(135,206,250,0.6)',
@@ -91,6 +91,59 @@ function App() {
           </p>
         </div>
       </ContentOverlay>
+
+      {/* Statistics Box - Left Side */}
+      <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-30 pointer-events-auto">
+        <div className="bg-gradient-to-br from-blue-900/40 to-blue-800/30 backdrop-blur-md border border-blue-400/20 rounded-2xl p-6 w-80 shadow-2xl">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-white font-semibold text-lg">Flywheel statistics</h3>
+            <button className="text-white/70 hover:text-white transition-colors">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                <path d="M21 3v5h-5"/>
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                <path d="M3 21v-5h5"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* Status Indicator */}
+          <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+              <span className="text-white/80 text-sm">Invested</span>
+            </div>
+          </div>
+
+          {/* Statistics */}
+          <div className="space-y-4 mb-6">
+            <div>
+              <div className="text-white/60 text-sm mb-1">Invested</div>
+              <div className="text-white text-2xl font-bold">$0.00</div>
+            </div>
+            <div>
+              <div className="text-white/60 text-sm mb-1">Tokens burned</div>
+              <div className="flex items-center gap-2">
+                <span className="text-white text-2xl font-bold">0.000%</span>
+                <div className="flex items-center gap-1">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <span className="text-white/60 text-xs">$GABE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Chart Area */}
+          <div className="relative h-20 bg-gradient-to-r from-blue-600/20 to-blue-400/20 rounded-lg overflow-hidden">
+            {/* Placeholder for chart - starts flat since project just launched */}
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-white/40 text-xs">Chart will populate with activity</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Audio Controls */}
       <button
