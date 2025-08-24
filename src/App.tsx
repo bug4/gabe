@@ -8,7 +8,7 @@ function App() {
   const [copied, setCopied] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(null);
 
-  const contractAddress = "777777777777"; // Replace with actual contract address
+  const contractAddress = "8WBHgSjgsSdAmnALQTWSXpKc9GtyXTjTQwaFHrttf777"; // Replace with actual contract address
 
   const copyToClipboard = async () => {
     try {
