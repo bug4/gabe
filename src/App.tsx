@@ -43,13 +43,23 @@ function App() {
 
       {/* Top Navigation */}
       <div className="fixed top-6 right-6 z-30 flex gap-4">
-        <button className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25">
+        <a 
+          href="https://heaven.xyz" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 pointer-events-auto"
+        >
           Buy on Heaven
-        </button>
-        <button className="bg-blue-500/20 backdrop-blur-md border border-blue-400/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 flex items-center gap-2">
+        </a>
+        <a 
+          href="https://x.com/gabeinheaven" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-blue-500/20 backdrop-blur-md border border-blue-400/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 flex items-center gap-2 pointer-events-auto"
+        >
           <Twitter size={18} />
           Twitter
-        </button>
+        </a>
       </div>
 
       {/* Content Overlay - Ready for future content */}
