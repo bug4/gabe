@@ -44,6 +44,14 @@ function App() {
       {/* Top Navigation */}
       <div className="fixed top-6 right-6 z-30 flex gap-4">
         <a 
+          href="https://x.com/i/communities/1959633415432450220" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="bg-purple-500/20 backdrop-blur-md border border-purple-400/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-500/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 pointer-events-auto"
+        >
+          Gabe's Community
+        </a>
+        <a 
           href="https://heaven.xyz" 
           target="_blank" 
           rel="noopener noreferrer"
