@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cinzel:wght@400;600;700;900&display=swap');
+
+/* Custom font classes */
+.font-futuristic {
+  font-family: 'Orbitron', monospace;
+}
+
+.font-elegant {
+  font-family: 'Cinzel', serif;
+}
