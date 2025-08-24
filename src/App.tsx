@@ -99,7 +99,7 @@ function App() {
       {/* Top Navigation */}
       <div className="fixed top-6 right-6 z-30 flex gap-4">
         <a 
-          href="https://x.com/i/communities/1959716682068595052" 
+          href="https://x.com/i/communities/1959725470074736866" 
           target="_blank" 
           rel="noopener noreferrer"
           className="bg-amber-800/20 backdrop-blur-md border border-amber-600/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-amber-800/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-600/25 pointer-events-auto"
@@ -115,7 +115,7 @@ function App() {
           Buy on Heaven
         </a>
         <a 
-          href="https://x.com/HeavenConfessor" 
+          href="https://x.com/ConfessorHeaven" 
           target="_blank" 
           rel="noopener noreferrer"
           className="bg-amber-600/20 backdrop-blur-md border border-amber-400/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-amber-600/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-400/25 flex items-center gap-2 pointer-events-auto"
