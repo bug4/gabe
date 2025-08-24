@@ -1,14 +1,13 @@
 import React from 'react';
-import { Volume2, VolumeX, Twitter, Copy, Check } from 'lucide-react';
+import { Twitter, Copy, Check, Mic } from 'lucide-react';
 import Spline from '@splinetool/react-spline';
 import ContentOverlay from './components/ContentOverlay';
 
 function App() {
-  const [isMuted, setIsMuted] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
-  const audioRef = React.useRef<HTMLAudioElement>(null);
+  const [isLoading, setIsLoading] = React.useState(true);
 
-  const contractAddress = "8WBHgSjgsSdAmnALQTWSXpKc9GtyXTjTQwaFHrttf777"; // Replace with actual contract address
+  const contractAddress = "777"; // Replace with actual contract address
 
   const copyToClipboard = async () => {
     try {
@@ -20,24 +19,68 @@ function App() {
     }
   };
   React.useEffect(() => {
-    // Auto-play music when component mounts
-    if (audioRef.current) {
-      audioRef.current.play().catch(error => {
-        console.log('Auto-play was prevented:', error);
-      });
-    }
+    // Show loading screen for 3 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  const toggleMute = () => {
-    if (audioRef.current) {
-      if (audioRef.current.paused) {
-        audioRef.current.play();
-      }
-      audioRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
+  // Loading Screen Component
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-amber-900 via-amber-800 to-amber-900 flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto px-6">
+          {/* Loading Icon */}
+          <div className="mb-8">
+            <div className="relative">
+              <Mic size={64} className="text-amber-200 mx-auto animate-pulse" />
+              <div className="absolute inset-0 animate-ping">
+                <Mic size={64} className="text-amber-400/50 mx-auto" />
+              </div>
+            </div>
+          </div>
 
+          {/* Title */}
+          <h1 className="text-4xl font-bold text-amber-100 mb-6 font-elegant">
+            The Confessor
+          </h1>
+
+          {/* Warning Message */}
+          <div className="bg-amber-800/30 border border-amber-600/40 rounded-lg p-6 mb-6">
+            <h2 className="text-xl font-semibold text-amber-200 mb-3">
+              Microphone Access Required
+            </h2>
+            <p className="text-amber-300/90 text-sm leading-relaxed">
+              To confess your secrets to The Confessor, please allow microphone access when prompted. 
+              Your confessions will be heard and processed securely.
+            </p>
+          </div>
+
+          {/* Loading Bar */}
+          <div className="w-full bg-amber-800/40 rounded-full h-2 mb-4">
+            <div className="bg-gradient-to-r from-amber-400 to-amber-200 h-2 rounded-full animate-pulse" 
+                 style={{
+                   animation: 'loading 3s ease-in-out forwards',
+                 }}>
+            </div>
+          </div>
+
+          <p className="text-amber-400/80 text-sm">
+            Preparing confession chamber...
+          </p>
+        </div>
+
+        <style jsx>{`
+          @keyframes loading {
+            0% { width: 0%; }
+            100% { width: 100%; }
+          }
+        `}</style>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Image Background - Full Screen */}
@@ -50,7 +93,7 @@ function App() {
 
       {/* Spline 3D Scene - Above Background Image */}
       <div className="fixed inset-0 w-full h-full z-5">
-        <Spline scene="https://prod.spline.design/kANUvVsWEW1DPjbb/scene.splinecode" />
+        <Spline scene="https://prod.spline.design/uRw8yCOqdxSz5Zdz/scene.splinecode" />
       </div>
 
       {/* Top Navigation */}
@@ -59,15 +102,15 @@ function App() {
           href="https://x.com/i/communities/1959633415432450220" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="bg-purple-500/20 backdrop-blur-md border border-purple-400/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-500/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25 pointer-events-auto"
+          className="bg-amber-800/20 backdrop-blur-md border border-amber-600/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-amber-800/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-600/25 pointer-events-auto"
         >
-          Gabe's Community
+          The Confessor's Community
         </a>
         <a 
           href="https://heaven.xyz" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 pointer-events-auto"
+          className="bg-amber-700/20 backdrop-blur-md border border-amber-500/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-amber-700/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/25 pointer-events-auto"
         >
           Buy on Heaven
         </a>
@@ -75,7 +118,7 @@ function App() {
           href="https://x.com/gabeinheaven" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="bg-blue-500/20 backdrop-blur-md border border-blue-400/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-500/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 flex items-center gap-2 pointer-events-auto"
+          className="bg-amber-600/20 backdrop-blur-md border border-amber-400/30 text-white px-6 py-3 rounded-full font-semibold hover:bg-amber-600/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-400/25 flex items-center gap-2 pointer-events-auto"
         >
           <Twitter size={18} />
           Twitter
@@ -86,14 +129,14 @@ function App() {
       <ContentOverlay className="relative z-10">
         {/* Main Title - Top Center */}
         <div className="flex justify-center pt-20">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white text-center leading-tight tracking-wide font-futuristic">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white text-center leading-tight tracking-wide font-elegant">
             <span className="inline-block animate-pulse bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl" 
                   style={{
                     textShadow: '0 0 30px rgba(255,255,255,1), 0 0 60px rgba(255,255,255,0.8), 0 0 90px rgba(135,206,250,0.6)',
                     filter: 'drop-shadow(0 0 20px rgba(255,255,255,1))',
                     fontWeight: '900'
                   }}>
-              Gabe In Heaven
+              The Confessor
             </span>
           </h1>
         </div>
@@ -106,7 +149,7 @@ function App() {
                     textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.5)',
                     filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.7))'
                   }}>
-              Heaven's newest resident
+              Keeper of secrets and wisdom
             </span>
           </p>
         </div>
@@ -114,7 +157,7 @@ function App() {
 
       {/* Statistics Box - Left Side */}
       <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-30 pointer-events-auto">
-        <div className="bg-gradient-to-br from-blue-900/40 to-blue-800/30 backdrop-blur-md border border-blue-400/20 rounded-2xl p-6 w-80 shadow-2xl">
+        <div className="bg-gradient-to-br from-amber-900/40 to-amber-800/30 backdrop-blur-md border border-amber-600/20 rounded-2xl p-6 w-80 shadow-2xl">
           {/* Header */}
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-white font-semibold text-lg">Flywheel statistics</h3>
@@ -131,7 +174,7 @@ function App() {
           {/* Status Indicator */}
           <div className="flex items-center gap-2 mb-6">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+              <div className="w-3 h-3 bg-amber-400 rounded-full animate-pulse"></div>
               <span className="text-white/80 text-sm">Invested</span>
             </div>
           </div>
@@ -148,16 +191,16 @@ function App() {
                 <span className="text-white text-2xl font-bold">0.000%</span>
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 bg-white rounded-full"></div>
-                  <span className="text-white/60 text-xs">$GABE</span>
+                  <span className="text-white/60 text-xs">$CONFESSOR</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Chart Area */}
-          <div className="relative h-20 bg-gradient-to-r from-blue-600/20 to-blue-400/20 rounded-lg overflow-hidden">
+          <div className="relative h-20 bg-gradient-to-r from-amber-600/20 to-amber-400/20 rounded-lg overflow-hidden">
             {/* Placeholder for chart - starts flat since project just launched */}
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full"></div>
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-amber-600 to-amber-400 rounded-full"></div>
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-white/40 text-xs">Chart will populate with activity</span>
             </div>
@@ -167,7 +210,7 @@ function App() {
 
       {/* Contract Address Box - Bottom Center */}
       <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-30 pointer-events-auto">
-        <div className="bg-blue-900/40 backdrop-blur-md border border-blue-400/20 rounded-2xl p-4 shadow-2xl">
+        <div className="bg-amber-900/40 backdrop-blur-md border border-amber-600/20 rounded-2xl p-4 shadow-2xl">
           <div className="flex items-center gap-3">
             <div className="flex flex-col">
               <span className="text-white/60 text-xs mb-1">Contract Address</span>
@@ -177,7 +220,7 @@ function App() {
             </div>
             <button
               onClick={copyToClipboard}
-              className="bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/30 text-white p-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 flex items-center gap-2"
+              className="bg-amber-600/20 hover:bg-amber-600/30 border border-amber-500/30 text-white p-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/25 flex items-center gap-2"
               title="Copy contract address"
             >
               {copied ? (
@@ -196,24 +239,6 @@ function App() {
         </div>
       </div>
 
-      {/* Audio Controls */}
-      <button
-        onClick={toggleMute}
-        className="fixed bottom-6 right-6 z-30 bg-white/10 backdrop-blur-md border border-white/20 text-white p-4 rounded-full hover:bg-white/20 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-white/25"
-        title={isMuted ? 'Unmute Music' : 'Mute Music'}
-      >
-        {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
-      </button>
-
-      {/* Background Music */}
-      <audio
-        ref={audioRef}
-        loop
-        className="hidden"
-      >
-        <source src="/1.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
     </div>
   );
 }
