@@ -7,7 +7,7 @@ function App() {
   const [copied, setCopied] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
 
-  const contractAddress = "777"; // Replace with actual contract address
+  const contractAddress = "BxrtHD6T4T7UUoFAyuiMnAdJK76kcL8qm8iyF9xv8777"; // Replace with actual contract address
 
   const copyToClipboard = async () => {
     try {
